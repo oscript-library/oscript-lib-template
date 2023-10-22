@@ -5,31 +5,32 @@
 // ${fileDirname}: the current opened file's dirname
 // ${fileExtname}: the current opened file's extension
 // ${cwd}: the current working directory of the spawned process
-
 {
     "version": "2.0.0",
     "_runner": "terminal",
     "windows": {
         "command": "cmd",
-        "args": ["/c", "chcp 65001 ;"]
+        "args": [
+            "/c",
+            "chcp 65001 ;"
+        ]
     },
     "linux": {
         "command": "sh",
-        "args": ["-c"]
+        "args": [
+            "-c"
+        ]
     },
     "isShellCommand": true,
-    // "showOutput": "silent",
-    "_runner": "terminal",
     "tasks": [
         {
-            "taskName": "Testing project",
+            "label": "Testing project",
             "args": [
-                 "1testrunner",
+                "1testrunner",
                 "-runall",
                 "${workspaceRoot}/tests"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             // "isBuildCommand": false,
             "isTestCommand": false,
@@ -44,14 +45,13 @@
             }
         },
         {
-            "taskName": "Testing current test-file",
+            "label": "Testing current test-file",
             "args": [
-                 "1testrunner",
+                "1testrunner",
                 "-run",
                 "${file}",
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false,
             "isTestCommand": true,
@@ -66,16 +66,15 @@
             }
         },
         {
-            "taskName": "Exec all features",
+            "label": "Exec all features",
             "args": [
-                 "1bdd",
+                "1bdd",
                 "${workspaceRoot}/features",
-                "-fail-fast", 
-                "-out", 
+                "-fail-fast",
+                "-out",
                 "${workspaceRoot}/exec.log"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": true,
             "isTestCommand": false,
@@ -90,68 +89,65 @@
             }
         },
         {
-            "taskName": "Exec feature",
+            "label": "Exec feature",
             "args": [
-                 "1bdd",
+                "1bdd",
                 "${file}",
-                "-fail-fast", 
-                "-out", 
+                "-fail-fast",
+                "-out",
                 "${workspaceRoot}/exec.log"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false,
             "isTestCommand": true,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": [
-                {
-                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                }
+                    {
+                        "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
                 ]
             }
         },
         {
-            "taskName": "Exec feature for current step def",
+            "label": "Exec feature for current step def",
             "args": [
-                 "1bdd",
+                "1bdd",
                 "${fileDirname}/../${fileBasenameNoExtension}.feature",
-                "-fail-fast", 
-                "-out", 
+                "-fail-fast",
+                "-out",
                 "${workspaceRoot}/exec.log"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false,
             "isTestCommand": true,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": [
-                {
-                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                }
+                    {
+                        "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
                 ]
             }
         },
         {
-            "taskName": "Generate feature steps",
+            "label": "Generate feature steps",
             "args": [
-                 "1bdd",
+                "1bdd",
                 "gen",
                 "${file}",
-                "-out", 
+                "-out",
                 "${workspaceRoot}/exec.log"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false,
             "isTestCommand": false,
@@ -166,66 +162,61 @@
             }
         },
         {
-            "taskName": "Opm: package build",
+            "label": "Opm: package build",
             "args": [
                 "opm",
                 "build",
                 "${workspaceRoot}"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: compile",
+            "label": "OneScript: compile",
             "args": [
-                 "oscript",
-                 "-encoding=utf-8",
+                "oscript",
+                "-encoding=utf-8",
                 "-compile",
                 "${file}"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: check",
+            "label": "OneScript: check",
             "args": [
-                 "oscript",
-                 "-encoding=utf-8",
+                "oscript",
+                "-encoding=utf-8",
                 "-check",
                 "${file}"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: make",
+            "label": "OneScript: make",
             "args": [
-                 "oscript",
-                 "-encoding=utf-8",
+                "oscript",
+                "-encoding=utf-8",
                 "-make",
                 "${file}",
                 "${fileBasename}.exe"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: run",
+            "label": "OneScript: run",
             "args": [
-                 "oscript",
-                 "-encoding=utf-8",
+                "oscript",
+                "-encoding=utf-8",
                 "${file}"
             ],
             "echoCommand": true,
-            "showOutput": "always",
             "suppressTaskName": true,
             "isBuildCommand": true,
             "problemMatcher": {
